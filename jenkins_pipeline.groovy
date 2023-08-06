@@ -36,10 +36,10 @@ pipeline {
                 echo "Flask web application has been deployed."
 
                 // Wait for the application to start
-                sleep 10
+                sleep 5
 
                 // Send a POST request to /shutdown to stop the Flask application gracefully
-                sh 'python3 && import requests && requests.post("http://127.0.0.1/shutdown")'
+                sh 'python3 - <<EOF\nimport requests\nrequests.post("http://127.0.0.1/shutdown")\nEOF'
 
                 echo "Flask web application has been stopped."
             }
