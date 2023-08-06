@@ -27,7 +27,6 @@ pipeline {
                 sh 'mkdir -p $deployDir' // Use the defined variable here
                 
                 withEnv(["PATH+PYTHON=/usr/bin/python3"]) {
-                    sh 'python3 get-pip.py --user'
                     sh 'python3 -m pip install Flask'
                 }
 
