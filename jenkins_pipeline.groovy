@@ -28,6 +28,7 @@ pipeline {
                 
                 withEnv(["PATH+PYTHON=/usr/bin/python3"]) {
                     sh 'python3 -m pip install Flask'
+                    sh 'python3 -m pip install requests'
                 }
 
                 // Start Flask Application in the Background
