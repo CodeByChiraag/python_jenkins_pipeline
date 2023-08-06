@@ -8,8 +8,8 @@ pipeline {
                     echo "Build started"
                     echo "Compiling the Python code..."
                     withEnv(["PATH+PYTHON=/usr/bin/python3"]) {
-                        sh 'python -m pip install Flask'
-                        sh 'python test_app.py'
+                        sh 'python3 -m pip install Flask'
+                        sh 'python3 test_app.py'
                     }
                     echo "Build completed"
                 }
@@ -27,12 +27,12 @@ pipeline {
                 sh 'mkdir -p $deployDir' // Use the defined variable here
                 sh 'curl -O https://bootstrap.pypa.io/get-pip.py'
                 withEnv(["PATH+PYTHON=/usr/bin/python3"]) {
-                    sh 'python get-pip.py --user'
-                    sh 'python -m pip install Flask'
+                    sh 'python3 get-pip.py --user'
+                    sh 'python3 -m pip install Flask'
                 }
 
                 // Start Flask Application in the Background
-                sh "nohup python $deployDir/web.py > /dev/null 2>&1 &"
+                sh "nohup python3 $deployDir/web.py > /dev/null 2>&1 &"
 
                 echo "Flask web application has been deployed."
 
@@ -41,7 +41,7 @@ pipeline {
 
                 // Send a POST request to /shutdown to stop the Flask application gracefully
                 sh """
-                    python - <<EOF
+                    python3 - <<EOF
                     import requests
                     requests.post("http://127.0.0.1/shutdown")
                     EOF
