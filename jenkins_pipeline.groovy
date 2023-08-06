@@ -7,7 +7,7 @@ pipeline {
                 timestamps {
                     echo "Build started"
                     echo "Compiling the Python code..."
-                    withEnv(["PATH+PYTHON=/path/to/python/bin"]) {
+                    withEnv(["PATH+PYTHON=/usr/bin/python3"]) {
                         sh 'python -m pip install Flask'
                         sh 'python test_app.py'
                     }
