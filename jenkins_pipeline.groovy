@@ -40,7 +40,7 @@ pipeline {
 
                 // Send a POST request to /shutdown to stop the Flask application gracefully
                 sh """
-                python3 - <<EOF
+                python3 <<EOF
                 import requests
                 requests.post("http://127.0.0.1/shutdown")
                 EOF
